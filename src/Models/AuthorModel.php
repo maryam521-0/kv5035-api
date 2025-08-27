@@ -13,7 +13,7 @@ class AuthorModel {
     public function getAuthors(array $params): array {
         $sql = "SELECT DISTINCT a.id AS person_id, a.name
                 FROM author a
-                LEFT JOIN content_has_author cha ON cha.author_id = a.id
+                LEFT JOIN author_content cha ON cha.author_id = a.id
                 LEFT JOIN content c ON c.id = cha.content_id
                 WHERE 1=1";
         $qp = [];

@@ -19,7 +19,7 @@ class ResearchModel {
                 JOIN type t ON c.type_id = t.id
                 LEFT JOIN content_has_award ca ON c.id = ca.content_id
                 LEFT JOIN award a ON ca.award_id = a.id
-                LEFT JOIN content_has_author cha ON cha.content_id = c.id
+                LEFT JOIN author_content cha ON cha.content_id = c.id
                 LEFT JOIN author au ON au.id = cha.author_id
                 WHERE 1=1";
         $qp = [];
