@@ -16,9 +16,9 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Configure Apache virtual host
 RUN echo '<VirtualHost *:80>' > /etc/apache2/sites-available/000-default.conf && \
-    echo '    DocumentRoot /var/www/html' >> /etc/apache2/sites-available/000-default.conf && \
-    echo '    DirectoryIndex api/index.php' >> /etc/apache2/sites-available/000-default.conf && \
-    echo '    <Directory /var/www/html>' >> /etc/apache2/sites-available/000-default.conf && \
+    echo '    DocumentRoot /var/www/html/api' >> /etc/apache2/sites-available/000-default.conf && \
+    echo '    DirectoryIndex index.php' >> /etc/apache2/sites-available/000-default.conf && \
+    echo '    <Directory /var/www/html/api>' >> /etc/apache2/sites-available/000-default.conf && \
     echo '        AllowOverride All' >> /etc/apache2/sites-available/000-default.conf && \
     echo '        Require all granted' >> /etc/apache2/sites-available/000-default.conf && \
     echo '    </Directory>' >> /etc/apache2/sites-available/000-default.conf && \
