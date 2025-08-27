@@ -11,6 +11,16 @@ $path = strtolower(trim(strtok($uri, '?'), '/'));
 
 // Basic router - support both Nuwebspace and direct deployment paths
 switch ($path) {
+    case 'kv5035/coursework/api':
+    case '':
+        // Root endpoint - Hello World
+        if (isset($_GET['api_key']) && $_GET['api_key'] === 'w23042229-key') {
+            echo json_encode(["message" => "Hello World"]);
+        } else {
+            http_response_code(401);
+            echo json_encode(["error" => "Unauthorized - API key required"]);
+        }
+        break;
     case 'kv5035/coursework/api/about':
     case 'about':
         $controller = new AboutController();
