@@ -11,35 +11,33 @@ class ResearchModel {
      * Supports params: research_id, person_id, search, page
      */
     public function getResearch(array $params): array {
-        $sql = "SELECT DISTINCT c.id AS research_id, c.title,
-                       COALESCE(c.abstract, '') AS abstract,
+        $sql = "SELECT DISTINCT r.research_id AS research_id, r.title,
+                       COALESCE(r.abstract, '') AS abstract,
                        t.name AS type,
-                       COALESCE(a.name, '') AS award
-                FROM content c
-                JOIN type t ON c.type_id = t.id
-                LEFT JOIN content_has_award ca ON c.id = ca.content_id
-                LEFT JOIN award a ON ca.award_id = a.id
-                LEFT JOIN author_content cha ON cha.content_id = c.id
-                LEFT JOIN author au ON au.id = cha.author_id
+                       COALESCE(r.award_name, '') AS award
+                FROM research r
+                JOIN type t ON r.type_id = t.type_id
+                LEFT JOIN research_has_author rha ON rha.research_id = r.research_id
+                LEFT JOIN author au ON au.author_id = rha.author_id
                 WHERE 1=1";
         $qp = [];
 
         if (!empty($params['research_id'])) {
-            $sql .= " AND c.id = :rid";
+            $sql .= " AND r.research_id = :rid";
             $qp[':rid'] = (int)$params['research_id'];
         }
 
         if (!empty($params['person_id'])) {
-            $sql .= " AND au.id = :pid";
+            $sql .= " AND au.author_id = :pid";
             $qp[':pid'] = (int)$params['person_id'];
         }
 
         if (!empty($params['search'])) {
-            $sql .= " AND (LOWER(c.title) LIKE :search OR LOWER(c.abstract) LIKE :search)";
+            $sql .= " AND (LOWER(r.title) LIKE :search OR LOWER(r.abstract) LIKE :search)";
             $qp[':search'] = '%' . strtolower((string)$params['search']) . '%';
         }
 
-        $sql .= " ORDER BY c.id ASC";
+        $sql .= " ORDER BY r.research_id ASC";
 
         $limit = 10;
         if (!empty($params['page']) && is_numeric($params['page']) && (int)$params['page'] > 0) {
@@ -53,17 +51,19 @@ class ResearchModel {
     }
 
     public function giveAward(int $researchId, int $awardId): void {
-        $st = $this->db->prepare("INSERT INTO content_has_award (content_id, award_id) VALUES (:rid, :aid)");
+        // Update research table with award information
+        $st = $this->db->prepare("UPDATE research SET award = :aid, award_name = (SELECT name FROM award WHERE id = :aid) WHERE research_id = :rid");
         $st->execute([':rid' => $researchId, ':aid' => $awardId]);
     }
 
     public function removeAward(int $researchId, int $awardId): void {
-        $st = $this->db->prepare("DELETE FROM content_has_award WHERE content_id = :rid AND award_id = :aid");
-        $st->execute([':rid' => $researchId, ':aid' => $awardId]);
+        // Remove award from research table
+        $st = $this->db->prepare("UPDATE research SET award = NULL, award_name = NULL WHERE research_id = :rid");
+        $st->execute([':rid' => $researchId]);
     }
 
     public function changeType(int $researchId, int $typeId): void {
-        $st = $this->db->prepare("UPDATE content SET type_id = :tid WHERE id = :rid");
+        $st = $this->db->prepare("UPDATE research SET type_id = :tid WHERE research_id = :rid");
         $st->execute([':rid' => $researchId, ':tid' => $typeId]);
     }
 }

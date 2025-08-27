@@ -11,20 +11,20 @@ class AuthorModel {
      * Supports params: person_id, research_id, search, page
      */
     public function getAuthors(array $params): array {
-        $sql = "SELECT DISTINCT a.id AS person_id, a.name
+        $sql = "SELECT DISTINCT a.author_id AS person_id, a.name
                 FROM author a
-                LEFT JOIN author_content cha ON cha.author_id = a.id
-                LEFT JOIN content c ON c.id = cha.content_id
+                LEFT JOIN research_has_author rha ON rha.author_id = a.author_id
+                LEFT JOIN research r ON r.research_id = rha.research_id
                 WHERE 1=1";
         $qp = [];
 
         if (!empty($params['person_id'])) {
-            $sql .= " AND a.id = :person_id";
+            $sql .= " AND a.author_id = :person_id";
             $qp[':person_id'] = (int)$params['person_id'];
         }
 
         if (!empty($params['research_id'])) {
-            $sql .= " AND c.id = :research_id";
+            $sql .= " AND r.research_id = :research_id";
             $qp[':research_id'] = (int)$params['research_id'];
         }
 
@@ -33,7 +33,7 @@ class AuthorModel {
             $qp[':search'] = '%' . strtolower((string)$params['search']) . '%';
         }
 
-        $sql .= " ORDER BY a.id ASC";
+        $sql .= " ORDER BY a.author_id ASC";
 
         // Pagination (10 per page)
         $limit = 10;
@@ -53,12 +53,12 @@ class AuthorModel {
     }
 
     public function updateAuthor(int $id, string $name): void {
-        $st = $this->db->prepare("UPDATE author SET name = :name WHERE id = :id");
+        $st = $this->db->prepare("UPDATE author SET name = :name WHERE author_id = :id");
         $st->execute([':id' => $id, ':name' => trim($name)]);
     }
 
     public function deleteAuthor(int $id): void {
-        $st = $this->db->prepare("DELETE FROM author WHERE id = :id");
+        $st = $this->db->prepare("DELETE FROM author WHERE author_id = :id");
         $st->execute([':id' => $id]);
     }
 }
