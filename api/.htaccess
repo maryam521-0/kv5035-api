@@ -1,4 +1,8 @@
 RewriteEngine On
 RewriteBase /
-# Route everything under /KV5035/coursework/api/ to api/index.php
+# Route everything under /KV5035/coursework/api/ to api/index.php (Nuwebspace)
 RewriteRule ^KV5035/coursework/api/?(.*)$ api/index.php [QSA,L]
+# Route direct API calls to index.php (Render/Docker)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

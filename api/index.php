@@ -9,17 +9,20 @@ $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 $path = strtolower(trim(strtok($uri, '?'), '/'));
 
-// Basic router
+// Basic router - support both Nuwebspace and direct deployment paths
 switch ($path) {
     case 'kv5035/coursework/api/about':
+    case 'about':
         $controller = new AboutController();
         $controller->handle($method);
         break;
     case 'kv5035/coursework/api/people':
+    case 'people':
         $controller = new PeopleController();
         $controller->handle($method);
         break;
     case 'kv5035/coursework/api/research':
+    case 'research':
         $controller = new ResearchController();
         $controller->handle($method);
         break;
