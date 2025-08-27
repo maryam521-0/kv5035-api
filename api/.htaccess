@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+# Route everything under /KV5035/coursework/api/ to api/index.php
+RewriteRule ^KV5035/coursework/api/?(.*)$ api/index.php [QSA,L]

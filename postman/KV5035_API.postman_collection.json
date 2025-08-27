@@ -1,0 +1,496 @@
+{
+  "info": {
+    "name": "KV5035 Coursework API - Zafer Ahmad",
+    "_postman_id": "2b4e3e3c-aaaa-bbbb-cccc-1234567890ff",
+    "description": "Postman collection for KV5035 coursework API by Zafer Ahmad (w23042229)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "About",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/about",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "about"
+          ]
+        }
+      }
+    },
+    {
+      "name": "People - GET (all + page 1)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/people?page=1",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "people"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "People - GET by person_id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/people?person_id=1",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "people"
+          ],
+          "query": [
+            {
+              "key": "person_id",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "People - GET by research_id (authors of a paper)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/people?research_id=1",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "people"
+          ],
+          "query": [
+            {
+              "key": "research_id",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "People - GET search + page=2",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/people?search=jo&page=2",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "people"
+          ],
+          "query": [
+            {
+              "key": "search",
+              "value": "jo"
+            },
+            {
+              "key": "page",
+              "value": "2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "People - POST create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"New Author\"\n}"
+        },
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/people",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "people"
+          ]
+        }
+      }
+    },
+    {
+      "name": "People - PATCH update",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"person_id\": 1,\n  \"name\": \"Updated Author\"\n}"
+        },
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/people",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "people"
+          ]
+        }
+      }
+    },
+    {
+      "name": "People - DELETE",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"person_id\": 1\n}"
+        },
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/people",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "people"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Research - GET all (page 1)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/research?page=1",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "research"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Research - GET by research_id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/research?research_id=1",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "research"
+          ],
+          "query": [
+            {
+              "key": "research_id",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Research - GET by person_id (author's works)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/research?person_id=1",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "research"
+          ],
+          "query": [
+            {
+              "key": "person_id",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Research - POST give award",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_id\": 1,\n  \"award_id\": 2,\n  \"action\": \"give\"\n}"
+        },
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/research",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "research"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Research - POST remove award",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_id\": 1,\n  \"award_id\": 2,\n  \"action\": \"remove\"\n}"
+        },
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/research",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "research"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Research - POST change type",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "w23042229-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_id\": 1,\n  \"type_id\": 3\n}"
+        },
+        "url": {
+          "raw": "https://w23042229.nuwebspace.co.uk/KV5035/coursework/api/research",
+          "protocol": "https",
+          "host": [
+            "w23042229",
+            "nuwebspace",
+            "co",
+            "uk"
+          ],
+          "path": [
+            "KV5035",
+            "coursework",
+            "api",
+            "research"
+          ]
+        }
+      }
+    }
+  ]
+}
