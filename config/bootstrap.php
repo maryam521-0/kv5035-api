@@ -33,3 +33,13 @@ try {
     echo json_encode(["error" => "Database connection failed"]);
     exit;
 }
+
+// Utility functions
+function param_get_lower(): array {
+    return array_change_key_case($_GET, CASE_LOWER);
+}
+
+function json_body(): array {
+    $input = file_get_contents('php://input');
+    return json_decode($input, true) ?? [];
+}
